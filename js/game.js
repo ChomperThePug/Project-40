@@ -63,9 +63,9 @@ class Game{
 
                          
                      }
-                    
-                     //text to display player score.
 
+                     //text to display player score.
+                     //text("Score: "+player.score,50,50 );
                      
                  
                  }
@@ -106,8 +106,17 @@ class Game{
                      //fill code here, to destroy the objects. (Use the one in the class project 40)
                      // add the condition to calculate the score. 
                      //and use update() to update the values in the database.
-
-                     player.score =player.score+1;
+                     if (player.index !== null) {
+                        for (var i = 0; i < fruitGroup.length; i++) {
+                            if (fruitGroup.get(i).isTouching(players)) {
+                                fruitGroup.get(i).destroy();
+                                    database.ref('/').update({
+                                        score: player.score
+                                    });                    
+                            }
+                            player.score =player.score+1;
+                        }
+                      }
                   }
                 
                   
